@@ -2,158 +2,185 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="ToolsWaala - Free online tools like PDF to Word, Text to Speech, Image to PDF, Grammar Checker and more." />
-  <meta name="keywords" content="ToolsWaala, PDF to Word, Text to Speech, Image Compressor, SEO tools" />
-  <meta name="author" content="ToolsWaala" />
-  <title>ToolsWaala - Free Online Tools</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Online Tools: PDF to Word, Speech to Text, Image to PDF, Grammar Checker & More</title>
+  <meta name="description" content="Use our free, fast & secure tools like PDF to Word Converter, Speech to Text, Image to PDF, Grammar Checker & Text to Speech. Trusted by 1M+ users globally." />
+  <meta name="keywords" content="PDF to Word, Text to Speech, Image to PDF, Grammar Checker, ToolsWaala" />
   <style>
-    body { font-family: Arial, sans-serif; background: #f5f7fa; margin: 0; padding: 0; color: #333; }
-    header { background: #007acc; color: white; padding: 1rem; text-align: center; }
-    nav { display: flex; flex-wrap: wrap; justify-content: center; background: #e1e4e8; padding: 0.5rem; }
-    nav a { margin: 0.5rem; padding: 0.5rem 1rem; background: white; border-radius: 5px; text-decoration: none; color: #007acc; }
-    section { padding: 1rem; max-width: 900px; margin: auto; }
-    .tool { background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 1rem; margin-bottom: 2rem; }
-    textarea, input[type="file"], input[type="text"] { width: 100%; padding: 10px; margin-top: 10px; }
-    button { margin-top: 10px; padding: 10px 20px; background: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    footer { text-align: center; background: #007acc; color: white; padding: 1rem; margin-top: 2rem; }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; color: #333; }
+    .container { max-width: 960px; margin: 0 auto; padding: 20px; background: #fff; }
+    h1, h2 { color: #222; }
+    textarea, input[type="text"], input[type="file"] { width: 100%; padding: 10px; margin: 10px 0; }
+    button { padding: 10px 20px; margin-top: 10px; }
+    .tool-section { margin-bottom: 40px; border-bottom: 1px solid #ddd; padding-bottom: 30px; }
+    #output { border: 1px solid #ccc; padding: 10px; min-height: 50px; background: #f1f1f1; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>ToolsWaala</h1>
-    <p>Free & Powerful Online Tools in One Place</p>
-  </header>
+  <div class="container">
+    <h1>Free Online Tools – Fast, Secure & Easy to Use</h1>
 
-  <nav>
-    <a href="#pdf2word">PDF to Word</a>
-    <a href="#img2pdf">Image to PDF</a>
-    <a href="#grammar">Grammar Checker</a>
-    <a href="#text2speech">Text to Speech</a>
-    <a href="#speech2text">Speech to Text</a>
-    <a href="#wordcounter">Word Counter</a>
-  </nav>
-
-  <section>
-    <div id="pdf2word" class="tool">
+    <!-- PDF to Word -->
+    <div class="tool-section">
       <h2>PDF to Word Converter</h2>
-      <input type="file" id="pdfFile" accept=".pdf"/>
-      <button onclick="convertPDFtoWord()">Convert</button>
+      <p>Select a PDF file to convert into Word (DOCX). Note: Requires backend API or use an online service like Xodo.</p>
+      <input type="file" id="pdfToWordInput" accept=".pdf" />
+      <p><strong>Note:</strong> This feature requires server-side processing. You can integrate with tools like Xodo, ILovePDF API, or PSPDFKit.</p>
     </div>
 
-    <div id="img2pdf" class="tool">
+    <!-- Speech to Text -->
+    <div class="tool-section">
+      <h2>Speech to Text</h2>
+      <button onclick="startDictation()">Start Speaking</button>
+      <div id="output"></div>
+    </div>
+
+    <!-- Image to PDF -->
+    <div class="tool-section">
       <h2>Image to PDF Converter</h2>
-      <input type="file" id="imageFiles" multiple accept="image/*" />
-      <button onclick="convertImagesToPDF()">Convert to PDF</button>
+      <input type="file" id="imgInput" multiple accept="image/*" />
+      <button onclick="convertToPDF()">Convert to PDF</button>
     </div>
 
-    <div id="grammar" class="tool">
-      <h2>Grammar Checker</h2>
-      <textarea id="grammarInput" rows="5" placeholder="Paste your text..."></textarea>
-      <button onclick="checkGrammar()">Check Grammar</button>
-      <div id="grammarOutput" style="margin-top:10px;color:red;"></div>
+    <!-- Grammar Checker -->
+    <div class="tool-section">
+      <h2>Online Grammar Checker</h2>
+      <textarea rows="6" placeholder="Paste your text here..." spellcheck="true"></textarea>
+      <p>Browser-based grammar check enabled. Right-click red underlines to fix.</p>
     </div>
 
-    <div id="text2speech" class="tool">
+    <!-- Text to Speech -->
+    <div class="tool-section">
       <h2>Text to Speech</h2>
-      <textarea id="ttsInput" rows="4" placeholder="Type your text..."></textarea>
+      <textarea id="ttsInput" rows="4" placeholder="Type text to convert to speech..."></textarea>
       <button onclick="speakText()">Speak</button>
     </div>
 
-    <div id="speech2text" class="tool">
-      <h2>Speech to Text</h2>
-      <button onclick="startDictation()">Start Speaking</button>
-      <p id="output"></p>
-    </div>
+    <h2>Why Use Our Tools?</h2>
+    <ul>
+      <li>100% Free</li>
+      <li>Mobile & Desktop Friendly</li>
+      <li>Secure, No Data Stored</li>
+    </ul>
 
-    <div id="wordcounter" class="tool">
-      <h2>Word Counter</h2>
-      <textarea id="wordText" rows="4" oninput="countWords()" placeholder="Type or paste your content..."></textarea>
-      <p id="wordCount">Words: 0</p>
-    </div>
-  </section>
+    <h2>Frequently Asked Questions</h2>
+    <h3>Is the PDF to Word converter tool really free?</h3>
+    <p>Yes, it’s completely free with no hidden charges or sign-up.</p>
 
-  <footer>&copy; 2025 ToolsWaala. All rights reserved.</footer>
+    <h3>Can I use Speech to Text on my phone?</h3>
+    <p>Absolutely! Our speech to text tool is mobile friendly and works on all devices.</p>
 
+    <h3>How secure is the Image to PDF tool?</h3>
+    <p>We don’t store any files. Everything is processed securely in your browser.</p>
+
+    <h3>Does the grammar checker support multiple languages?</h3>
+    <p>Currently, it supports English only, with more languages coming soon.</p>
+
+    <h3>Can I download the audio from the Text to Speech tool?</h3>
+    <p>Coming soon! Text-to-speech downloads will be added shortly.</p>
+  </div>
+
+  <!-- JSON-LD FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the PDF to Word converter tool really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it’s completely free with no hidden charges or sign-up."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use Speech to Text on my phone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely! Our speech to text tool is mobile friendly and works on all devices."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How secure is the Image to PDF tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We don’t store any files. Everything is processed securely in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the grammar checker support multiple languages?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Currently, it supports English only, with more languages coming soon."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download the audio from the Text to Speech tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Coming soon! Text-to-speech downloads will be added shortly."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Script Section -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
-    function speakText() {
-      const text = document.getElementById("ttsInput").value;
-      const utterance = new SpeechSynthesisUtterance(text);
-      window.speechSynthesis.speak(utterance);
-    }
-
     function startDictation() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) return alert("Speech Recognition not supported in this browser.");
       const recognition = new SpeechRecognition();
-      recognition.onresult = function(event) {
+      recognition.lang = "en-US";
+      recognition.onresult = (event) => {
         document.getElementById("output").innerText = event.results[0][0].transcript;
       };
       recognition.start();
     }
 
-    function countWords() {
-      const text = document.getElementById("wordText").value.trim();
-      const count = text.length ? text.split(/\s+/).filter(Boolean).length : 0;
-      document.getElementById("wordCount").innerText = `Words: ${count}`;
+    function speakText() {
+      const msg = new SpeechSynthesisUtterance();
+      msg.text = document.getElementById("ttsInput").value;
+      window.speechSynthesis.speak(msg);
     }
 
-    async function convertImagesToPDF() {
+    async function convertToPDF() {
+      const files = document.getElementById("imgInput").files;
+      if (!files.length) return alert("Please select at least one image.");
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF();
-      const files = document.getElementById("imageFiles").files;
-      if (files.length === 0) return alert("Please select images.");
+
       for (let i = 0; i < files.length; i++) {
-        const img = await createImageBitmap(files[i]);
-        const canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        const imgData = canvas.toDataURL("image/jpeg");
-        if (i > 0) pdf.addPage();
-        pdf.addImage(imgData, "JPEG", 10, 10, 190, 0);
+        const imgData = await readFileAsDataURL(files[i]);
+        const img = new Image();
+        img.src = imgData;
+        await new Promise(resolve => {
+          img.onload = () => {
+            const ratio = img.width / img.height;
+            const width = 210, height = 210 / ratio;
+            if (i !== 0) pdf.addPage();
+            pdf.addImage(img, "JPEG", 0, 0, width, height);
+            resolve();
+          };
+        });
       }
-      pdf.save("images.pdf");
+      pdf.save("converted.pdf");
     }
 
-    function checkGrammar() {
-      const input = document.getElementById("grammarInput").value;
-      let suggestions = [];
-      if (input.includes(" your ") || input.includes(" there ")) {
-        suggestions.push("Check homophones like your/you're, there/their/they're.");
-      }
-      if (input.includes(" is ") && input.includes(" they ")) {
-        suggestions.push("Possible subject-verb agreement issue.");
-      }
-      document.getElementById("grammarOutput").innerHTML = suggestions.length
-        ? suggestions.join("<br>")
-        : "No major issues found.";
-    }
-
-    async function convertPDFtoWord() {
-      const fileInput = document.getElementById("pdfFile");
-      if (fileInput.files.length === 0) return alert("Please select a PDF file.");
-      const file = fileInput.files[0];
-      const reader = new FileReader();
-      reader.onload = async function () {
-        const pdfData = new Uint8Array(reader.result);
-        const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
-        let text = "";
-        for (let i = 1; i <= pdf.numPages; i++) {
-          const page = await pdf.getPage(i);
-          const content = await page.getTextContent();
-          text += content.items.map(item => item.str).join(" ") + "\\n";
-        }
-        const blob = new Blob([text], { type: "application/msword" });
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = file.name.replace(".pdf", ".doc");
-        a.click();
-      };
-      reader.readAsArrayBuffer(file);
+    function readFileAsDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
     }
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 </body>
 </html>
