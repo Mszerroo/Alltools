@@ -2,140 +2,158 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="ToolsWaala - Free online tools like PDF to Word, Text to Speech, Image to PDF, Grammar Checker and more." />
+  <meta name="keywords" content="ToolsWaala, PDF to Word, Text to Speech, Image Compressor, SEO tools" />
+  <meta name="author" content="ToolsWaala" />
   <title>ToolsWaala - Free Online Tools</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f7fa; color: #333; }
+    body { font-family: Arial, sans-serif; background: #f5f7fa; margin: 0; padding: 0; color: #333; }
     header { background: #007acc; color: white; padding: 1rem; text-align: center; }
     nav { display: flex; flex-wrap: wrap; justify-content: center; background: #e1e4e8; padding: 0.5rem; }
-    nav a { margin: 0.3rem; padding: 0.5rem 1rem; text-decoration: none; background: white; border-radius: 5px; color: #007acc; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-    section { padding: 1rem; max-width: 1000px; margin: auto; }
-    .tool { margin-bottom: 2rem; padding: 1rem; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-    textarea { width: 100%; padding: 10px; font-size: 16px; margin-top: 10px; }
-    button { padding: 8px 16px; margin-top: 10px; background: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    button:hover { background: #005fa3; }
-    footer { text-align: center; padding: 1rem; background: #007acc; color: white; }
+    nav a { margin: 0.5rem; padding: 0.5rem 1rem; background: white; border-radius: 5px; text-decoration: none; color: #007acc; }
+    section { padding: 1rem; max-width: 900px; margin: auto; }
+    .tool { background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 1rem; margin-bottom: 2rem; }
+    textarea, input[type="file"], input[type="text"] { width: 100%; padding: 10px; margin-top: 10px; }
+    button { margin-top: 10px; padding: 10px 20px; background: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    footer { text-align: center; background: #007acc; color: white; padding: 1rem; margin-top: 2rem; }
   </style>
 </head>
 <body>
-
   <header>
     <h1>ToolsWaala</h1>
     <p>Free & Powerful Online Tools in One Place</p>
   </header>
 
   <nav>
-    <a href="#pdftoword">PDF to Word</a>
+    <a href="#pdf2word">PDF to Word</a>
+    <a href="#img2pdf">Image to PDF</a>
+    <a href="#grammar">Grammar Checker</a>
     <a href="#text2speech">Text to Speech</a>
     <a href="#speech2text">Speech to Text</a>
     <a href="#wordcounter">Word Counter</a>
   </nav>
 
   <section>
-
-    <!-- ✅ PDF TO WORD -->
-    <div id="pdftoword" class="tool">
+    <div id="pdf2word" class="tool">
       <h2>PDF to Word Converter</h2>
-      <p>Select a PDF file to convert it into editable Word (.doc) format.</p>
-      <input type="file" id="pdfFile" accept=".pdf" />
-      <button onclick="convertPdfToWord()">Convert to Word</button>
-      <p id="pdfStatus"></p>
+      <input type="file" id="pdfFile" accept=".pdf"/>
+      <button onclick="convertPDFtoWord()">Convert</button>
     </div>
 
-    <!-- ✅ TEXT TO SPEECH -->
+    <div id="img2pdf" class="tool">
+      <h2>Image to PDF Converter</h2>
+      <input type="file" id="imageFiles" multiple accept="image/*" />
+      <button onclick="convertImagesToPDF()">Convert to PDF</button>
+    </div>
+
+    <div id="grammar" class="tool">
+      <h2>Grammar Checker</h2>
+      <textarea id="grammarInput" rows="5" placeholder="Paste your text..."></textarea>
+      <button onclick="checkGrammar()">Check Grammar</button>
+      <div id="grammarOutput" style="margin-top:10px;color:red;"></div>
+    </div>
+
     <div id="text2speech" class="tool">
       <h2>Text to Speech</h2>
-      <textarea id="ttsInput" placeholder="Type something to speak..."></textarea>
+      <textarea id="ttsInput" rows="4" placeholder="Type your text..."></textarea>
       <button onclick="speakText()">Speak</button>
     </div>
 
-    <!-- ✅ SPEECH TO TEXT -->
     <div id="speech2text" class="tool">
       <h2>Speech to Text</h2>
-      <button onclick="startSpeechRecognition()">Start Listening</button>
-      <p id="sttOutput">Your speech will appear here...</p>
+      <button onclick="startDictation()">Start Speaking</button>
+      <p id="output"></p>
     </div>
 
-    <!-- ✅ WORD COUNTER -->
     <div id="wordcounter" class="tool">
       <h2>Word Counter</h2>
-      <textarea id="wcInput" oninput="updateWordCount()" placeholder="Type or paste text here..."></textarea>
-      <p id="wcResult">Words: 0 | Characters: 0</p>
+      <textarea id="wordText" rows="4" oninput="countWords()" placeholder="Type or paste your content..."></textarea>
+      <p id="wordCount">Words: 0</p>
     </div>
-
   </section>
 
-  <footer>
-    &copy; 2025 ToolsWaala. All rights reserved.
-  </footer>
+  <footer>&copy; 2025 ToolsWaala. All rights reserved.</footer>
 
   <script>
-    // ✅ TEXT TO SPEECH
     function speakText() {
       const text = document.getElementById("ttsInput").value;
-      if (!text) return alert("Please enter text!");
       const utterance = new SpeechSynthesisUtterance(text);
       window.speechSynthesis.speak(utterance);
     }
 
-    // ✅ SPEECH TO TEXT
-    function startSpeechRecognition() {
+    function startDictation() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) {
-        alert("Speech Recognition not supported in your browser.");
-        return;
-      }
       const recognition = new SpeechRecognition();
-      recognition.lang = "en-US";
-      recognition.onresult = (event) => {
-        const text = event.results[0][0].transcript;
-        document.getElementById("sttOutput").textContent = text;
+      recognition.onresult = function(event) {
+        document.getElementById("output").innerText = event.results[0][0].transcript;
       };
       recognition.start();
     }
 
-    // ✅ WORD COUNTER
-    function updateWordCount() {
-      const text = document.getElementById("wcInput").value.trim();
-      const words = text === "" ? 0 : text.split(/\s+/).length;
-      const chars = text.length;
-      document.getElementById("wcResult").textContent = `Words: ${words} | Characters: ${chars}`;
+    function countWords() {
+      const text = document.getElementById("wordText").value.trim();
+      const count = text.length ? text.split(/\s+/).filter(Boolean).length : 0;
+      document.getElementById("wordCount").innerText = `Words: ${count}`;
     }
 
-    // ✅ PDF TO WORD CONVERTER (text only)
-    async function convertPdfToWord() {
-      const fileInput = document.getElementById('pdfFile');
-      const status = document.getElementById('pdfStatus');
-      if (!fileInput.files.length) return alert("Please select a PDF file.");
+    async function convertImagesToPDF() {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF();
+      const files = document.getElementById("imageFiles").files;
+      if (files.length === 0) return alert("Please select images.");
+      for (let i = 0; i < files.length; i++) {
+        const img = await createImageBitmap(files[i]);
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        const imgData = canvas.toDataURL("image/jpeg");
+        if (i > 0) pdf.addPage();
+        pdf.addImage(imgData, "JPEG", 10, 10, 190, 0);
+      }
+      pdf.save("images.pdf");
+    }
 
-      status.textContent = "Converting...";
+    function checkGrammar() {
+      const input = document.getElementById("grammarInput").value;
+      let suggestions = [];
+      if (input.includes(" your ") || input.includes(" there ")) {
+        suggestions.push("Check homophones like your/you're, there/their/they're.");
+      }
+      if (input.includes(" is ") && input.includes(" they ")) {
+        suggestions.push("Possible subject-verb agreement issue.");
+      }
+      document.getElementById("grammarOutput").innerHTML = suggestions.length
+        ? suggestions.join("<br>")
+        : "No major issues found.";
+    }
+
+    async function convertPDFtoWord() {
+      const fileInput = document.getElementById("pdfFile");
+      if (fileInput.files.length === 0) return alert("Please select a PDF file.");
       const file = fileInput.files[0];
       const reader = new FileReader();
-
-      reader.onload = async function() {
-        const typedarray = new Uint8Array(reader.result);
-        const pdf = await pdfjsLib.getDocument(typedarray).promise;
-        let textContent = "";
-
+      reader.onload = async function () {
+        const pdfData = new Uint8Array(reader.result);
+        const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+        let text = "";
         for (let i = 1; i <= pdf.numPages; i++) {
           const page = await pdf.getPage(i);
           const content = await page.getTextContent();
-          const pageText = content.items.map(item => item.str).join(" ");
-          textContent += `\n\n--- Page ${i} ---\n\n` + pageText;
+          text += content.items.map(item => item.str).join(" ") + "\\n";
         }
-
-        const blob = new Blob([textContent], { type: "application/msword" });
-        saveAs(blob, "converted.doc");
-
-        status.textContent = "Download started.";
+        const blob = new Blob([text], { type: "application/msword" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = file.name.replace(".pdf", ".doc");
+        a.click();
       };
-
       reader.readAsArrayBuffer(file);
     }
   </script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 </body>
 </html>
