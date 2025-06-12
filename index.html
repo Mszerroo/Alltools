@@ -3,139 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ToolsWaala - Free Online Tools</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
+  <title>ToolsWaala – Free Online Tools (PDF, Text, SEO & More)</title>
+  <meta name="description" content="Use free, fast & secure online tools at ToolsWaala. Convert PDF to Word, compress images, use speech-to-text, grammar checker & more.">
+  <meta name="keywords" content="ToolsWaala, PDF to Word, Text to Speech, Image Compressor, Grammar Checker, SEO Tools, Free Online Tools">
+  <meta name="author" content="ToolsWaala Team" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f7fa; color: #333; }
-    header { background: #007acc; color: white; padding: 1rem; text-align: center; }
-    nav { display: flex; flex-wrap: wrap; justify-content: center; background: #e1e4e8; padding: 0.5rem; }
-    nav a { margin: 0.3rem; padding: 0.5rem 1rem; text-decoration: none; background: white; border-radius: 5px; color: #007acc; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-    section { padding: 1rem; max-width: 1000px; margin: auto; }
-    .tool { margin-bottom: 2rem; padding: 1rem; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-    textarea { width: 100%; padding: 10px; font-size: 16px; margin-top: 10px; }
-    button { padding: 8px 16px; margin-top: 10px; background: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    button:hover { background: #005fa3; }
-    footer { text-align: center; padding: 1rem; background: #007acc; color: white; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f8f9fa;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(45deg, #007bff, #00bcd4);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    nav {
+      background: #ffffff;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 15px 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    nav a {
+      margin: 10px;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #007bff;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .container {
+      max-width: 960px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .tool-card {
+      background: #f1faff;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+    .tool-card h2 {
+      margin-top: 0;
+      color: #007acc;
+    }
+    footer {
+      background: #007bff;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
-
   <header>
     <h1>ToolsWaala</h1>
-    <p>Free & Powerful Online Tools in One Place</p>
+    <p>Fast, Free & Powerful Online Tools – All in One Place</p>
   </header>
 
   <nav>
-    <a href="#pdftoword">PDF to Word</a>
+    <a href="#pdfword">PDF to Word</a>
     <a href="#text2speech">Text to Speech</a>
+    <a href="#imgpdf">Image to PDF</a>
+    <a href="#grammar">Grammar Checker</a>
+    <a href="#compress">Image Compressor</a>
     <a href="#speech2text">Speech to Text</a>
-    <a href="#wordcounter">Word Counter</a>
   </nav>
 
-  <section>
-
-    <!-- ✅ PDF TO WORD -->
-    <div id="pdftoword" class="tool">
+  <div class="container">
+    <section id="pdfword" class="tool-card">
       <h2>PDF to Word Converter</h2>
-      <p>Select a PDF file to convert it into editable Word (.doc) format.</p>
-      <input type="file" id="pdfFile" accept=".pdf" />
-      <button onclick="convertPdfToWord()">Convert to Word</button>
-      <p id="pdfStatus"></p>
-    </div>
+      <p>Convert your PDF documents into editable Word files quickly and securely. No signup required.</p>
+    </section>
 
-    <!-- ✅ TEXT TO SPEECH -->
-    <div id="text2speech" class="tool">
+    <section id="text2speech" class="tool-card">
       <h2>Text to Speech</h2>
-      <textarea id="ttsInput" placeholder="Type something to speak..."></textarea>
-      <button onclick="speakText()">Speak</button>
-    </div>
+      <p>Convert your typed text into realistic voice. Ideal for learning, accessibility, and presentations.</p>
+    </section>
 
-    <!-- ✅ SPEECH TO TEXT -->
-    <div id="speech2text" class="tool">
+    <section id="imgpdf" class="tool-card">
+      <h2>Image to PDF</h2>
+      <p>Turn your images into downloadable PDF documents instantly. Supports JPG, PNG and more.</p>
+    </section>
+
+    <section id="grammar" class="tool-card">
+      <h2>Grammar Checker</h2>
+      <p>Check for grammar, spelling, and punctuation errors in real-time using our AI-based grammar tool.</p>
+    </section>
+
+    <section id="compress" class="tool-card">
+      <h2>Image Compressor</h2>
+      <p>Reduce image file size without quality loss. Optimize for faster web or app use.</p>
+    </section>
+
+    <section id="speech2text" class="tool-card">
       <h2>Speech to Text</h2>
-      <button onclick="startSpeechRecognition()">Start Listening</button>
-      <p id="sttOutput">Your speech will appear here...</p>
-    </div>
+      <p>Speak into your mic and convert voice to text automatically. Works on desktop and mobile.</p>
+    </section>
 
-    <!-- ✅ WORD COUNTER -->
-    <div id="wordcounter" class="tool">
-      <h2>Word Counter</h2>
-      <textarea id="wcInput" oninput="updateWordCount()" placeholder="Type or paste text here..."></textarea>
-      <p id="wcResult">Words: 0 | Characters: 0</p>
-    </div>
+    <h2>Why ToolsWaala?</h2>
+    <ul>
+      <li>All tools are 100% free</li>
+      <li>No installation or signup needed</li>
+      <li>Works on all browsers and devices</li>
+      <li>Safe, secure & fast performance</li>
+    </ul>
 
-  </section>
+    <h2>FAQs</h2>
+    <p><strong>Is ToolsWaala free?</strong> Yes, all tools are free to use without login or signup.</p>
+    <p><strong>Are files stored or tracked?</strong> No, everything runs in-browser and is private to you.</p>
+  </div>
 
   <footer>
-    &copy; 2025 ToolsWaala. All rights reserved.
+    &copy; 2025 ToolsWaala. All Rights Reserved.
   </footer>
 
-  <script>
-    // ✅ TEXT TO SPEECH
-    function speakText() {
-      const text = document.getElementById("ttsInput").value;
-      if (!text) return alert("Please enter text!");
-      const utterance = new SpeechSynthesisUtterance(text);
-      window.speechSynthesis.speak(utterance);
-    }
-
-    // ✅ SPEECH TO TEXT
-    function startSpeechRecognition() {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) {
-        alert("Speech Recognition not supported in your browser.");
-        return;
-      }
-      const recognition = new SpeechRecognition();
-      recognition.lang = "en-US";
-      recognition.onresult = (event) => {
-        const text = event.results[0][0].transcript;
-        document.getElementById("sttOutput").textContent = text;
-      };
-      recognition.start();
-    }
-
-    // ✅ WORD COUNTER
-    function updateWordCount() {
-      const text = document.getElementById("wcInput").value.trim();
-      const words = text === "" ? 0 : text.split(/\s+/).length;
-      const chars = text.length;
-      document.getElementById("wcResult").textContent = `Words: ${words} | Characters: ${chars}`;
-    }
-
-    // ✅ PDF TO WORD CONVERTER (text only)
-    async function convertPdfToWord() {
-      const fileInput = document.getElementById('pdfFile');
-      const status = document.getElementById('pdfStatus');
-      if (!fileInput.files.length) return alert("Please select a PDF file.");
-
-      status.textContent = "Converting...";
-      const file = fileInput.files[0];
-      const reader = new FileReader();
-
-      reader.onload = async function() {
-        const typedarray = new Uint8Array(reader.result);
-        const pdf = await pdfjsLib.getDocument(typedarray).promise;
-        let textContent = "";
-
-        for (let i = 1; i <= pdf.numPages; i++) {
-          const page = await pdf.getPage(i);
-          const content = await page.getTextContent();
-          const pageText = content.items.map(item => item.str).join(" ");
-          textContent += `\n\n--- Page ${i} ---\n\n` + pageText;
+  <!-- JSON-LD for SEO FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is ToolsWaala free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, all tools are free to use without login or signup."
         }
-
-        const blob = new Blob([textContent], { type: "application/msword" });
-        saveAs(blob, "converted.doc");
-
-        status.textContent = "Download started.";
-      };
-
-      reader.readAsArrayBuffer(file);
-    }
+      },
+      {
+        "@type": "Question",
+        "name": "Are files stored or tracked?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, everything runs in-browser and is private to you."
+        }
+      }
+    ]
+  }
   </script>
-
 </body>
 </html>
